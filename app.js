@@ -14,7 +14,7 @@ const corsOptions = {
 
 
 app.use(express.json());
-app.use('/', express.static('./public'))
+app.use(express.static(__dirname + "/public/"))
 app.use(cors(corsOptions))
 app.use(express.urlencoded({extended: false}))
 
