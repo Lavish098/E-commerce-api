@@ -14,16 +14,13 @@ const corsOptions = {
 
 
 app.use(express.json());
-app.use(express.static('./public'))
+app.use('/', express.static('./public'))
 app.use(cors(corsOptions))
 app.use(express.urlencoded({extended: false}))
 
 app.use("/api/products", productRoute)
 
 
-app.get("/", (req, res) => {
-  res.status(200).send("Welcome to products API");
-});
 
 
 mongoose.connect("mongodb+srv://Lavish:lavish098@express-api.mf1prrw.mongodb.net/?retryWrites=true&w=majority&appName=Express-api")
