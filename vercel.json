@@ -14,11 +14,11 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "public"
+            "dest": "app.js"
         },
         {
             "src": "/",
-            "dest": "public"
+            "dest": "public/index.html"
         },
         {
             "src": "/(.+)",
