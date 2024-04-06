@@ -13,8 +13,11 @@ const corsOptions = {
   port: port,
 }
 
+app.set('view engine', 'ejs')
+
+
 app.use(express.json());
-app.use(express.static(__dirname + "/public/"))
+app.use(express.static('public'))
 app.use(cors(corsOptions))
 app.use(express.urlencoded({extended: false}))
 
@@ -22,7 +25,7 @@ app.use("/api/products", productRoute)
 
 
 app.get('/', (req, res) => {
-  res.sendFile('index.html', {root: path.join(__dirname, 'public')});
+  res.render('index');
 });
 
 mongoose.connect("mongodb+srv://Lavish:lavish098@express-api.mf1prrw.mongodb.net/?retryWrites=true&w=majority&appName=Express-api")
