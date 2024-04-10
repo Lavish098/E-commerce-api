@@ -28,7 +28,7 @@ app.use("/api/products", requireAuth, productRoute)
 app.use(authRoute)
 
 app.get('*', checkUser)
-app.get('/add-product', requireAuth, (req, res) => {
+app.get('/add-product', (req, res) => {
   res.sendFile('addProducts.html', {root: path.join(__dirname, 'public')});
 });
 app.get('/login', (req, res) => {
