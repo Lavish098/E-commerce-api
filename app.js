@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const path = require('path')
 const cookies = require('cookie-parser')
+const dotenv = require('dotenv')
 const productRoute = require("./routes/productsRoutes.js")
 const authRoute = require("./routes/authRoutes.js");
 const { requireAuth, checkUser } = require("./middleware/authMiddleware.js");
@@ -15,6 +16,7 @@ const corsOptions = {
   optionSuccessStatus: 200,
   port: port,
 }
+dotenv.config()
 
 app.use(express.json());
 app.use(express.static(__dirname + "/public/"))
@@ -39,7 +41,7 @@ app.get('/api/user', (req, res) => {
   res.json({ user: res.locals.user });
 });
 
-mongoose.connect("mongodb+srv://Lavish:lavish098@express-api.mf1prrw.mongodb.net/?retryWrites=true&w=majority&appName=Express-api")
+mongoose.connect(process.env.MONGO_URI)
 .then(() => {
   console.log('Connected to database')
   app.listen(port, console.log(`Express is listening on ${port}`));

@@ -1,13 +1,17 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/user.model');
 
+
+const jwtsecret =  process.env.TOKEN_SECRET
+
+
 const requireAuth = (req, res, next) => {
     const token = req.cookies.jwt;
 
     //check token exsit and verified
 
     if(token){
-        jwt.verify(token, 'lavish secret', (err, decodedToken) =>{
+        jwt.verify(token, jwtsecret, (err, decodedToken) =>{
             if(err){
                 console.log(err.message);
                 res.redirect('/login')
@@ -27,7 +31,7 @@ const checkUser = (req, res, next) => {
     const token = req.cookies.jwt;
 
     if(token){
-        jwt.verify(token, 'lavish secret', async (err, decodedToken) =>{
+        jwt.verify(token, jwtsecret, async (err, decodedToken) =>{
             if(err){
                 console.log(err.message);
                 res.locals.user = null;
