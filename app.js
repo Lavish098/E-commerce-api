@@ -5,7 +5,7 @@ const path = require('path')
 const cookies = require('cookie-parser')
 const productRoute = require("./routes/productsRoutes.js")
 const authRoute = require("./routes/authRoutes.js");
-const { requireAuth } = require("./middleware/authMiddleware.js");
+const { requireAuth, checkUser } = require("./middleware/authMiddleware.js");
 const app = express();
 
 const port = process.env.port || 3000;
@@ -25,7 +25,7 @@ app.use(cookies())
 app.use("/api/products", requireAuth, productRoute)
 app.use(authRoute)
 
-
+app.get('*', checkUser)
 app.get('/add-product', requireAuth, (req, res) => {
   res.sendFile('addProducts.html', {root: path.join(__dirname, 'public')});
 });
@@ -33,7 +33,11 @@ app.get('/login', (req, res) => {
   res.sendFile('login.html', {root: path.join(__dirname, 'public')});
 });
 
-
+app.get('/api/user', (req, res) => {
+  console.log('load');
+  console.log(res.locals.user);
+  res.json({ user: res.locals.user });
+});
 
 mongoose.connect("mongodb+srv://Lavish:lavish098@express-api.mf1prrw.mongodb.net/?retryWrites=true&w=majority&appName=Express-api")
 .then(() => {

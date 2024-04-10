@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+
 *, *:before, *:after {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -5,7 +8,7 @@
   }
   
   body {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Quicksand', sans-serif;
     color: #384047;
   }
   
@@ -68,10 +71,7 @@
     display: flex;
     justify-content: center;
   }
-  a{
-    text-decoration: none;
-    color: #FFF;
-  }
+  
   .product_btn{
     cursor: pointer;
     width: 200px;
@@ -116,4 +116,94 @@
       max-width: 480px;
     }
   
+  }
+
+
+  nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+  }
+  nav h1{
+    margin: 20px 5px;
+  }
+  @media screen and (max-width:500px) {
+    nav h1{
+      font-size: 20px;
+      margin: 10px 0;
+    }
+  }
+  nav ul{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  nav li{
+    list-style-type: none;
+    margin-left: 0px;
+  }
+  a{
+    text-decoration: none;
+    color: #384047;
+  }
+  nav li a{
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.8em;
+    display: block;
+    padding: 10px 16px;
+    letter-spacing: 2px;
+  }
+  .btn{
+    border-radius: 36px;
+    background: #4bc970;
+  }
+  header{
+    display: flex;
+    align-items: center;
+  }
+  header i{
+    font-size: 100px;
+    margin-right: 20px;
+  }
+  header h2{
+    font-size: 3em;
+    margin-bottom: 5px;
+  }
+  header h3{
+    font-size: 1.6em;
+    margin-bottom: 10px;
+    margin-left: 2px;
+    line-height: 3px;
+    color: #999;
+  }
+  header .btn{
+    margin-top: 20px;
+    padding: 12px 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 0.8em;
+  }
+  .recipes{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 30px;
+    row-gap: 80px;
+    margin: 80PX AUTO;
+    max-width: 1200px;
+  }
+  .recipe{
+    display: inline-block;
+    border-radius: 20px;
+    background: white;
+    position: relative;
+    text-align: center;
+    padding: 0 20px 30px 20px
+  }
+  .recipe img{
+    width: 100px;
+    margin: -30px auto 20px;
   }

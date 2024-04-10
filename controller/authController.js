@@ -63,7 +63,13 @@ const getUser = async (req, res) => {
   }
 };
 
+const removeUser = (req, res) => {
+    res.cookie('jwt', '', {maxAge: 1});
+    res.redirect('/')
+}
+
 module.exports = {
   addUser,
   getUser,
+  removeUser
 };
