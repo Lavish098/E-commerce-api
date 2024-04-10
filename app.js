@@ -7,9 +7,11 @@ const dotenv = require('dotenv')
 const productRoute = require("./routes/productsRoutes.js")
 const authRoute = require("./routes/authRoutes.js");
 const { requireAuth, checkUser } = require("./middleware/authMiddleware.js");
+const { getProducts } = require("./controller/productController.js");
+const products = require("./models/product.model.js");
 const app = express();
 
-const port = process.env.port || 3000;
+const port = process.env.port || 3001;
 const corsOptions = {
   origin: "*",
   credentails: true,
@@ -24,15 +26,18 @@ app.use(cors(corsOptions))
 app.use(express.urlencoded({extended: false}))
 app.use(cookies())
 
-app.use("/api/products", requireAuth, productRoute)
+app.use("/api/product", requireAuth, productRoute)
 app.use(authRoute)
 
 app.get('*', checkUser)
-app.get('/add-product', (req, res) => {
+app.get('/add-product', requireAuth, (req, res) => {
   res.sendFile('addProducts.html', {root: path.join(__dirname, 'public')});
 });
 app.get('/login', (req, res) => {
   res.sendFile('login.html', {root: path.join(__dirname, 'public')});
+});
+app.get('/api/products', getProducts, (req, res) => {
+  res.status(200).json()
 });
 
 app.get('/api/user', (req, res) => {
